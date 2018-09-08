@@ -34,6 +34,8 @@ Directory.prototype.addUser = function addUser(name){
     const user = new User(name, this);
 
     this.users.push(user);
+
+    return user;
 }
 
 
@@ -60,6 +62,12 @@ User.prototype.removeFlag = function removeFlag(flag){
             numbers together
         */
         this.uac &= ~this.directory.flags[flag];
+    }
+}
+
+User.prototype.toggleFlag = function toggleFlag(flag){
+    if(flag in this.directory.flags){
+        this.uac ^= this.directory.flags[flag];
     }
 }
 
